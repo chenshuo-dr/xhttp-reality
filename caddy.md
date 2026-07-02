@@ -1,3 +1,16 @@
+```
+wget -qO - --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36" https://dl.xanmod.org/archive.key | sudo gpg --dearmor --yes -o /etc/apt/keyrings/xanmod-archive-keyring.gpg
+```
+```
+wget -qO - --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36" https://dl.xanmod.org/check_x86-64_psabi.sh | awk -f -
+```
+```
+echo "deb [signed-by=/etc/apt/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/xanmod-release.list
+```
+```
+sudo apt update && sudo apt install linux-xanmod-x64v3
+```
+
 xxx.passeway.com {
 	handle /b7d7cac3796bb743 {
 		reverse_proxy 127.0.0.1:8080 {
