@@ -151,6 +151,19 @@ EOF
     
     # 获取IP所在国家
     IP_COUNTRY=$(curl -s http://ipinfo.io/${HOST_IP}/country)
+
+    # 打开BBR
+    sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+    sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+    echo "net.ipv4.tcp_congestion_control = bbr" >>/etc/sysctl.conf
+    echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
+    sysctl -p >/dev/null 2>&1
+
+    #设置定时重启
+    crontab -l 2>/dev/null|sed '/acme.sh/d'|sed '/reboot/d'> crontab.txt
+    echo "30 16 * * * /sbin/reboot" >> crontab.txt
+    crontab crontab.txt
+    rm -f crontab.txt
     
     # 生成并保存客户端配置
     cat << EOF > /usr/local/etc/xray/config.txt
