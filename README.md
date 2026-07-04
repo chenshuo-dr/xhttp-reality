@@ -1,31 +1,3 @@
-## 终端预览
-
-![preview](image.png)
-
-## 一键脚本
-```
-bash <(curl -fsSL xray-bay.vercel.app)
-```
-
-## Xray指令
-启动 Xray 服务
-```
-sudo systemctl start xray
-```
-停止 Xray 服务
-```
-sudo systemctl stop xray
-```
-重启 Xray 服务
-```
-sudo systemctl restart xray
-```
-检查 Xray 状态
-```
-sudo systemctl status xray
-```
-
-## 协议优势
 
 ## [VLESS + XHTTP + REALITY](https://github.com/XTLS/Xray-core/discussions/4113) 
 
